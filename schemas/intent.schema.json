@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/madowaku/mado-vibe-shipping/schemas/intent.schema.json",
+  "title": "MADO Vibe Shipping Intent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "goal",
+    "app_type",
+    "audience",
+    "primary_entity",
+    "actions",
+    "device_priority",
+    "access",
+    "persistence",
+    "assumptions",
+    "open_questions"
+  ],
+  "properties": {
+    "goal": { "type": "string", "minLength": 1 },
+    "app_type": { "type": "string", "minLength": 1 },
+    "audience": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["single_user", "small_private_group", "organization", "public", "unknown"]
+        },
+        "size_hint": { "type": ["integer", "null"], "minimum": 1 }
+      }
+    },
+    "primary_entity": { "type": "string", "minLength": 1 },
+    "actions": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "device_priority": {
+      "type": "string",
+      "enum": ["mobile", "desktop", "responsive", "unknown"]
+    },
+    "access": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["visibility", "auth_required"],
+      "properties": {
+        "visibility": {
+          "type": "string",
+          "enum": ["private", "invite_only", "link_access", "public", "unknown"]
+        },
+        "auth_required": { "type": ["boolean", "null"] }
+      }
+    },
+    "persistence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "reason": { "type": ["string", "null"] }
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": []
+    },
+    "preferences": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": []
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["field", "value", "reason", "reversible"],
+        "properties": {
+          "field": { "type": "string" },
+          "value": {},
+          "reason": { "type": "string" },
+          "reversible": { "type": "boolean" }
+        }
+      }
+    },
+    "open_questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["question", "reason", "materiality"],
+        "properties": {
+          "question": { "type": "string" },
+          "reason": { "type": "string" },
+          "materiality": {
+            "type": "string",
+            "enum": ["core_meaning", "privacy", "cost", "destructive", "external_action", "other"]
+          }
+        }
+      }
+    }
+  }
+}
