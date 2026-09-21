@@ -256,7 +256,12 @@ function inferAccess(text, audience, facts, assumptions, openQuestions) {
       makeOpenQuestion(
         "Who should be able to use this: only people you invite, anyone with the link, or everyone?",
         "Access changes the privacy and sharing behavior of the product.",
-        "privacy"
+        "privacy",
+        {
+          choices: ["invite_only", "link_access", "public"],
+          allowChooseForMe: true,
+          defaultChoice: "invite_only"
+        }
       )
     );
   }
