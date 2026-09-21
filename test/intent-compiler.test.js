@@ -48,6 +48,9 @@ test("ambiguous sharing emits a human-answerable privacy question", () => {
   assert.equal(intent.access.visibility, "unknown");
   assert.equal(intent.open_questions.length, 1);
   assert.equal(intent.open_questions[0].materiality, "privacy");
+  assert.equal(intent.open_questions[0].allow_choose_for_me, true);
+  assert.equal(intent.open_questions[0].default_choice, "invite_only");
+  assert.deepEqual(intent.open_questions[0].choices, ["invite_only", "link_access", "public"]);
   assert.match(intent.open_questions[0].question, /invite|link|everyone/i);
   assert.doesNotMatch(intent.open_questions[0].question, /database|orm|framework|ssr|csr|postgres|sqlite/i);
 });

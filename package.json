@@ -13,7 +13,9 @@
   "scripts": {
     "compile": "node ./src/cli.js",
     "test": "node --test",
-    "fixture": "node ./scripts/run-fixture.js",
+    "fixture:m0.1": "node ./scripts/run-fixture.js",
+    "fixture:m0.2": "node ./scripts/run-question-gate-fixtures.js",
+    "fixture": "npm run fixture:m0.1 && npm run fixture:m0.2",
     "check": "npm test && npm run fixture"
   }
 }
