@@ -1,0 +1,19 @@
+{
+  "name": "mado-vibe-shipping",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Intent-to-software completion layer for non-engineers.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "mado-intent": "./src/cli.js"
+  },
+  "scripts": {
+    "compile": "node ./src/cli.js",
+    "test": "node --test",
+    "fixture": "node ./scripts/run-fixture.js",
+    "check": "npm test && npm run fixture"
+  }
+}

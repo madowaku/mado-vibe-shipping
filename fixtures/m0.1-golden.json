@@ -1,0 +1,87 @@
+{
+  "name": "m0.1-golden-partner-places",
+  "input": "I want an app where my partner and I can save places we want to visit.",
+  "expected": {
+    "goal": "Keep a shared list of places two people want to visit.",
+    "app_type": "shared_list",
+    "audience": {
+      "kind": "small_private_group",
+      "size_hint": 2
+    },
+    "primary_entity": "place",
+    "actions": [
+      "add",
+      "edit",
+      "mark_visited",
+      "delete"
+    ],
+    "device_priority": "mobile",
+    "access": {
+      "visibility": "invite_only",
+      "auth_required": true
+    },
+    "persistence": {
+      "required": true,
+      "reason": "The request explicitly describes saving or retaining information across uses."
+    },
+    "constraints": [],
+    "preferences": [],
+    "facts": [
+      {
+        "field": "audience.kind",
+        "value": "small_private_group",
+        "evidence": "partner"
+      },
+      {
+        "field": "audience.size_hint",
+        "value": 2,
+        "evidence": "partner"
+      },
+      {
+        "field": "primary_entity",
+        "value": "place",
+        "evidence": "places"
+      },
+      {
+        "field": "persistence.required",
+        "value": true,
+        "evidence": "save"
+      }
+    ],
+    "assumptions": [
+      {
+        "field": "app_type",
+        "value": "shared_list",
+        "reason": "The request describes persistent items used by more than one person, which maps cleanly to a shared-list product shape.",
+        "reversible": true
+      },
+      {
+        "field": "actions",
+        "value": [
+          "add",
+          "edit",
+          "mark_visited",
+          "delete"
+        ],
+        "reason": "These are the smallest reversible lifecycle actions that make the inferred product shape usable.",
+        "reversible": true
+      },
+      {
+        "field": "device_priority",
+        "value": "mobile",
+        "reason": "Place and travel lists are commonly used away from a desk, and mobile-first presentation is reversible.",
+        "reversible": true
+      },
+      {
+        "field": "access",
+        "value": {
+          "visibility": "invite_only",
+          "auth_required": true
+        },
+        "reason": "A known small group is safest as invite-only by default. This preserves privacy and can be relaxed later.",
+        "reversible": true
+      }
+    ],
+    "open_questions": []
+  }
+}

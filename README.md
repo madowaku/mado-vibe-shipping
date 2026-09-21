@@ -46,7 +46,41 @@ A request like:
 
 > “I want an app where my partner and I can save places we want to visit.”
 
-should become structured intent without forcing the user to answer engineering questions.
+becomes structured intent without forcing the user to answer engineering questions.
+
+## M0.1 is executable
+
+The first compiler is deliberately small and deterministic. It exists to harden the contract, provenance model, Question Gate, fixtures, and eval loop before a model-backed compiler is introduced behind the same interface.
+
+Requirements:
+
+- Node.js 20+
+
+Run the golden fixture:
+
+```bash
+npm run fixture
+```
+
+Run all checks:
+
+```bash
+npm run check
+```
+
+Compile an intent directly:
+
+```bash
+npm run compile -- "I want an app where my partner and I can save places we want to visit."
+```
+
+Japanese input is supported by the M0.1 baseline as well:
+
+```bash
+npm run compile -- "パートナーと行きたい場所を保存できるアプリが欲しい"
+```
+
+The output is validated against `schemas/intent.schema.json` and records both explicit facts and reversible assumptions.
 
 ## Core principles
 
@@ -62,8 +96,12 @@ should become structured intent without forcing the user to answer engineering q
 
 - `MADO_VIBE_SHIPPING_SPEC.md` — product and system specification
 - `AGENTS.md` — implementation rules for coding agents
+- `src/intent-compiler.js` — executable M0.1 compiler
+- `src/question-gate.js` — interruption/clarification policy
+- `src/schema-validator.js` — dependency-free schema validator
 - `schemas/intent.schema.json` — machine-readable Intent contract
-- `fixtures/` — Intent Compiler test cases
+- `fixtures/` — Intent Compiler fixtures
+- `test/` — executable tests
 - `evals/` — evaluation contracts and scorecards
 
 ## Current milestone
