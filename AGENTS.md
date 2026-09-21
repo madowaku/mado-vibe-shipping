@@ -36,6 +36,9 @@ Before asking a question, evaluate:
 
 ```yaml
 question_gate:
+  materiality: privacy | cost | destructive | external_action | core_meaning | other
+  implementation_detail: true | false
+  requested_technical_control: true | false
   can_infer_safely: true | false
   reversible_default_exists: true | false
   materially_changes_result: true | false
@@ -43,7 +46,16 @@ question_gate:
   consent_required: true | false
 ```
 
-Ask only when justified.
+Decision order:
+
+1. Suppress implementation details unless the user explicitly requested technical control.
+2. Surface consent-required decisions.
+3. Suppress non-material choices.
+4. Resolve safe reversible choices with a recorded assumption.
+5. If the user cannot reasonably know the answer, investigate first instead of asking them.
+6. Otherwise ask one human-answerable question.
+
+User-facing questions may cover privacy, spend, destructive behavior, external actions, or core product meaning. They must not contain avoidable implementation jargon.
 
 Bad:
 - "PostgreSQL or SQLite?"
@@ -53,7 +65,10 @@ Bad:
 
 Good:
 - "Should anyone with the link be able to open this, or only people you invite?"
-- "Should deleting an item remove it permanently, or keep it recoverable?"
+- "This can start a paid service. Do you want to enable it, or stay on the free path?"
+- "Should deleted items disappear permanently, or stay recoverable for a while?"
+
+When a surfaced question has a declared safe default, it may offer **choose for me**. This never authorizes silent spending, publication, destructive behavior, or external communication; those actions still require the appropriate consent gate.
 
 ## Completion language
 
