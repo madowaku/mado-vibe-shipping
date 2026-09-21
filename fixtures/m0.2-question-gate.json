@@ -14,7 +14,7 @@
       },
       "expected": {
         "ask": false,
-        "reason": "implementation_detail"
+        "gate_reason": "implementation_detail"
       }
     },
     {
@@ -27,14 +27,18 @@
         "canInferSafely": false,
         "reversibleDefaultExists": true,
         "userHasContextToAnswer": true,
-        "choices": ["invite_only", "link_access", "public"],
+        "choices": [
+          "invite_only",
+          "link_access",
+          "public"
+        ],
         "safeDefault": "invite_only"
       },
       "expected": {
         "ask": true,
-        "reason": "material_unresolved_decision",
         "allow_choose_for_me": true,
-        "default_choice": "invite_only"
+        "default_choice": "invite_only",
+        "gate_reason": "material_unresolved_decision"
       }
     },
     {
@@ -46,14 +50,17 @@
         "materiallyChangesResult": true,
         "consentRequired": true,
         "userHasContextToAnswer": true,
-        "choices": ["enable_paid", "stay_free"],
+        "choices": [
+          "enable_paid",
+          "stay_free"
+        ],
         "safeDefault": "stay_free"
       },
       "expected": {
         "ask": true,
-        "reason": "consent_required",
         "allow_choose_for_me": true,
-        "default_choice": "stay_free"
+        "default_choice": "stay_free",
+        "gate_reason": "consent_required"
       }
     },
     {
@@ -65,14 +72,17 @@
         "materiallyChangesResult": true,
         "consentRequired": true,
         "userHasContextToAnswer": true,
-        "choices": ["delete_permanently", "keep_recoverable"],
+        "choices": [
+          "delete_permanently",
+          "keep_recoverable"
+        ],
         "safeDefault": "keep_recoverable"
       },
       "expected": {
         "ask": true,
-        "reason": "consent_required",
         "allow_choose_for_me": true,
-        "default_choice": "keep_recoverable"
+        "default_choice": "keep_recoverable",
+        "gate_reason": "consent_required"
       }
     },
     {
@@ -84,14 +94,17 @@
         "materiallyChangesResult": true,
         "consentRequired": true,
         "userHasContextToAnswer": true,
-        "choices": ["send_now", "do_not_send"],
+        "choices": [
+          "send_now",
+          "do_not_send"
+        ],
         "safeDefault": "do_not_send"
       },
       "expected": {
         "ask": true,
-        "reason": "consent_required",
         "allow_choose_for_me": true,
-        "default_choice": "do_not_send"
+        "default_choice": "do_not_send",
+        "gate_reason": "consent_required"
       }
     },
     {
@@ -104,13 +117,16 @@
         "canInferSafely": false,
         "reversibleDefaultExists": false,
         "userHasContextToAnswer": true,
-        "choices": ["pick_one", "rank_options"]
+        "choices": [
+          "pick_one",
+          "rank_options"
+        ]
       },
       "expected": {
         "ask": true,
-        "reason": "material_unresolved_decision",
         "allow_choose_for_me": false,
-        "default_choice": null
+        "default_choice": null,
+        "gate_reason": "material_unresolved_decision"
       }
     },
     {
@@ -127,8 +143,8 @@
       },
       "expected": {
         "ask": false,
-        "reason": "not_material",
-        "resolution": "cards"
+        "resolution": "cards",
+        "gate_reason": "not_material"
       }
     },
     {
@@ -144,7 +160,7 @@
       },
       "expected": {
         "ask": false,
-        "reason": "system_should_resolve_first"
+        "gate_reason": "system_should_resolve_first"
       }
     }
   ]
