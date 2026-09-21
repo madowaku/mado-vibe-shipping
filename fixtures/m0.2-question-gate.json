@@ -1,0 +1,151 @@
+{
+  "name": "m0.2-human-question-gate",
+  "cases": [
+    {
+      "id": "technical-database-choice",
+      "candidate": {
+        "question": "PostgreSQL or SQLite?",
+        "reason": "The implementation needs storage.",
+        "materiality": "other",
+        "implementationDetail": true,
+        "requestedTechnicalControl": false,
+        "materiallyChangesResult": true,
+        "userHasContextToAnswer": false
+      },
+      "expected": {
+        "ask": false,
+        "reason": "implementation_detail"
+      }
+    },
+    {
+      "id": "privacy-ambiguous-sharing",
+      "candidate": {
+        "question": "Who should be able to open this: only people you invite, anyone with the link, or everyone?",
+        "reason": "This changes who can see the shared content.",
+        "materiality": "privacy",
+        "materiallyChangesResult": true,
+        "canInferSafely": false,
+        "reversibleDefaultExists": true,
+        "userHasContextToAnswer": true,
+        "choices": ["invite_only", "link_access", "public"],
+        "safeDefault": "invite_only"
+      },
+      "expected": {
+        "ask": true,
+        "reason": "material_unresolved_decision",
+        "allow_choose_for_me": true,
+        "default_choice": "invite_only"
+      }
+    },
+    {
+      "id": "cost-paid-service",
+      "candidate": {
+        "question": "This feature can start a paid service. Do you want to enable it, or stay on the free path?",
+        "reason": "Enabling it may create charges.",
+        "materiality": "cost",
+        "materiallyChangesResult": true,
+        "consentRequired": true,
+        "userHasContextToAnswer": true,
+        "choices": ["enable_paid", "stay_free"],
+        "safeDefault": "stay_free"
+      },
+      "expected": {
+        "ask": true,
+        "reason": "consent_required",
+        "allow_choose_for_me": true,
+        "default_choice": "stay_free"
+      }
+    },
+    {
+      "id": "destructive-delete",
+      "candidate": {
+        "question": "Should deleted items disappear permanently, or stay recoverable for a while?",
+        "reason": "Permanent deletion can destroy user data.",
+        "materiality": "destructive",
+        "materiallyChangesResult": true,
+        "consentRequired": true,
+        "userHasContextToAnswer": true,
+        "choices": ["delete_permanently", "keep_recoverable"],
+        "safeDefault": "keep_recoverable"
+      },
+      "expected": {
+        "ask": true,
+        "reason": "consent_required",
+        "allow_choose_for_me": true,
+        "default_choice": "keep_recoverable"
+      }
+    },
+    {
+      "id": "external-action-send-invites",
+      "candidate": {
+        "question": "The invitations are ready. Should I send them now?",
+        "reason": "Sending messages acts outside the project on the user's behalf.",
+        "materiality": "external_action",
+        "materiallyChangesResult": true,
+        "consentRequired": true,
+        "userHasContextToAnswer": true,
+        "choices": ["send_now", "do_not_send"],
+        "safeDefault": "do_not_send"
+      },
+      "expected": {
+        "ask": true,
+        "reason": "consent_required",
+        "allow_choose_for_me": true,
+        "default_choice": "do_not_send"
+      }
+    },
+    {
+      "id": "core-meaning-voting-model",
+      "candidate": {
+        "question": "Should each person pick one favorite, or rank several options?",
+        "reason": "These create meaningfully different voting experiences.",
+        "materiality": "core_meaning",
+        "materiallyChangesResult": true,
+        "canInferSafely": false,
+        "reversibleDefaultExists": false,
+        "userHasContextToAnswer": true,
+        "choices": ["pick_one", "rank_options"]
+      },
+      "expected": {
+        "ask": true,
+        "reason": "material_unresolved_decision",
+        "allow_choose_for_me": false,
+        "default_choice": null
+      }
+    },
+    {
+      "id": "visual-layout-default",
+      "candidate": {
+        "question": "Cards or rows?",
+        "reason": "Both layouts satisfy the same product intent.",
+        "materiality": "other",
+        "materiallyChangesResult": false,
+        "canInferSafely": true,
+        "reversibleDefaultExists": true,
+        "userHasContextToAnswer": true,
+        "safeDefault": "cards"
+      },
+      "expected": {
+        "ask": false,
+        "reason": "not_material",
+        "resolution": "cards"
+      }
+    },
+    {
+      "id": "system-must-investigate-first",
+      "candidate": {
+        "question": "Which service limit should we design around?",
+        "reason": "The system has not inspected the connected service yet.",
+        "materiality": "other",
+        "materiallyChangesResult": true,
+        "canInferSafely": false,
+        "reversibleDefaultExists": false,
+        "userHasContextToAnswer": false
+      },
+      "expected": {
+        "ask": false,
+        "reason": "system_should_resolve_first"
+      }
+    }
+  ]
+}
