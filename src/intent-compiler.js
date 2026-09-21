@@ -195,16 +195,16 @@ function inferDevicePriority(text, entity, facts, assumptions) {
 }
 
 function inferAccess(text, audience, facts, assumptions, openQuestions) {
-  const publicEvidence = evidenceFor(text, PATTERNS.publicAudience);
-  if (publicEvidence) {
-    addFact(facts, "access.visibility", "public", publicEvidence);
-    return { visibility: "public", auth_required: false };
-  }
-
   const linkEvidence = evidenceFor(text, PATTERNS.linkAccess);
   if (linkEvidence) {
     addFact(facts, "access.visibility", "link_access", linkEvidence);
     return { visibility: "link_access", auth_required: false };
+  }
+
+  const publicEvidence = evidenceFor(text, PATTERNS.publicAudience);
+  if (publicEvidence) {
+    addFact(facts, "access.visibility", "public", publicEvidence);
+    return { visibility: "public", auth_required: false };
   }
 
   const inviteEvidence = evidenceFor(text, PATTERNS.inviteAccess);
