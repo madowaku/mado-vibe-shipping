@@ -95,7 +95,7 @@ export function resolveQuestionCandidate(candidate) {
     return {
       id: candidate.id ?? null,
       ask: false,
-      reason: decision.reason,
+      gate_reason: decision.reason,
       question: null,
       materiality: candidate.materiality ?? "other",
       choices: [],
@@ -123,7 +123,7 @@ export function resolveQuestionCandidate(candidate) {
   return {
     id: candidate.id ?? null,
     ask: true,
-    reason: decision.reason,
+    gate_reason: decision.reason,
     ...openQuestion,
     resolution: null
   };
