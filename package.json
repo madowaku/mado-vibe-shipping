@@ -15,8 +15,5 @@
     "test": "node --test",
     "fixture": "node ./scripts/run-fixture.js",
     "check": "npm test && npm run fixture"
-  },
-  "dependencies": {
-    "ajv": "^8.17.1"
   }
 }
