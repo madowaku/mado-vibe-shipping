@@ -104,11 +104,13 @@ The output is validated against `schemas/intent.schema.json` and records both ex
 - `test/` — executable tests
 - `evals/` — evaluation contracts and scorecards
 
-## Current milestone
+## Milestone status
 
-**M0.1 Intent Compiler Fixture**
+- ✅ **M0.1 Intent Compiler Fixture** — executable compiler, provenance, schema validation, golden fixture
+- ✅ **M0.2 Human Question Gate** — interruption precision across privacy, cost, destructive actions, external actions, and core product meaning
+- ▶️ **M0.3 Friction Firewall Fixture** — turn raw engineering failures into recoverable human-language states
 
-Success means the system can turn vague human intent into an implementation-ready product hypothesis while asking only questions that materially affect the result.
+M0.2's rule is simple: do not make the user answer questions the system should answer, and do not silently make decisions only the user should make.
 
 ---
 
